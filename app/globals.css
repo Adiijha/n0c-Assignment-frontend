@@ -1,0 +1,40 @@
+@import "tailwindcss";
+          .highlight-animation {
+            position: relative;
+            display: inline-block;
+            z-index: 0;
+          }
+          .highlight-animation::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background: rgba(124, 58, 237, 0.4); /* purple-500 with opacity */
+            border-radius: 0.25rem; /* rounded corners */
+            z-index: -1;
+            animation: highlight-slide 1s forwards;
+          }
+          @keyframes highlight-slide {
+            0% {
+              width: 0;
+            }
+            100% {
+              width: 100%;
+            }
+          }
+          /* Optional: On hover, pulse the highlight */
+          .highlight-animation:hover::before {
+            animation: highlight-pulse 1.5s infinite alternate;
+          }
+          @keyframes highlight-pulse {
+            0% {
+              background: rgba(124, 58, 237, 0.3);
+              box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+            }
+            100% {
+              background: rgba(124, 58, 237, 0.6);
+              box-shadow: 0 0 15px rgba(124, 58, 237, 0.8);
+            }
+          }
