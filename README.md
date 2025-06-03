@@ -1,36 +1,164 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📊 Sensor Dashboard Frontend
 
-## Getting Started
+A responsive, dark-themed frontend for a real-time sensor data dashboard. Built using **Next JS**, **React**, **Tailwind CSS**, and **Chart.js**, this project enables users to visualize temperature and pressure data, apply time-based filters, and log in securely.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- 🔐 Secure login form with email/password and password visibility toggle  
+- 📈 Line charts for real-time temperature and pressure data  
+- 🗓️ Custom timestamp range filter  
+- 📱 Fully responsive across all devices  
+- 🎨 Clean, modern dark UI with Tailwind CSS  
+- 🧠 State management using custom store hooks
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** React / Next.js  
+- **Styling:** Tailwind CSS  
+- **Charting:** Chart.js via `react-chartjs-2` and `Recharts`
+- **Icons:** Lucide Icons, React Icons  
+- **State Management:** React Hooks  
+
+---
+
+## 📦 Installation
+```bash
+git clone https://github.com/Adiijha/n0c-Assignment-frontend.git
+cd n0c-Assignment-frontend
+npm install
+````
+
+---
+
+## 🧪 Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Runs the app locally at [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Production Build
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+To preview the production build locally.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔁 PM2 Setup (For Deployment)
 
-## Deploy on Vercel
+If using PM2 to serve the frontend:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pm2 start npm --name frontend -- start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To update after pulling new changes:
+
+```bash
+git pull
+npm install
+npm run build
+pm2 reload frontend
+```
+
+---
+
+## 🌐 NGINX Setup (Optional)
+
+If serving static files after `npm run build`, use this NGINX configuration:
+
+```nginx
+server {
+  listen 80;
+  server_name yourdomain.com;
+
+  root /var/www/frontend/out;
+  index index.html;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+> 🔄 No need to restart NGINX after frontend updates when serving static files.
+
+---
+
+## 🧱 Project Structure
+
+```
+📦 n0c-Assignment-frontend
+├── app/
+│   ├── (auth)/signin/page.tsx
+│   ├── (auth)/signup/page.tsx
+│   ├── dashboard/
+│   │   ├── Header.tsx
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── landingPage/page.tsx
+│   ├── landingPage/AuthInitializer.tsx
+│   └── landingPage/layoutWrapper.tsx
+├── layout/
+│   ├── Footer.tsx
+│   └── Header.tsx
+├── lib/
+│   └── api.ts
+├── store/
+│   └── authStore.ts
+├── styles/
+│   └── globals.css
+├── public/
+├── .env
+├── next.config.js
+├── tsconfig.json
+├── postcss.config.mjs
+├── README.md
+
+```
+
+---
+
+## ⚙️ Environment Variables (Optional)
+
+If your app fetches data from an API, add a `.env.local` file in the root:
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=https://your-api-endpoint.com
+```
+
+---
+
+## 🔗 Backend Integration
+
+
+[👉 Backend Repo](https://github.com/adiijha/n0c-Assignment-backend)
+
+---
+
+## 🤝 Contributing
+
+Have suggestions or improvements?
+Feel free to open an issue or submit a pull request!
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+```
