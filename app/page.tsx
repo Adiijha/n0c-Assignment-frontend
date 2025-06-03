@@ -19,7 +19,7 @@ export default function Home() {
 
 
   return (
-    <section className="bg-black h-screen w-full">
+    <section className="bg-black">
       <div className="text-lg text-white">
         <LandingPage />
       </div>
