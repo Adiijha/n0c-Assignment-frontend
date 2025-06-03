@@ -3,7 +3,7 @@ import { Zap, Factory, HardHat } from "lucide-react";
 
 const LandingCenter: React.FC = () => {
   return (
-    <div className="max-h-full  flex items-center justify-center bg-black px-4 py-20 sm:py-24">
+    <div className="max-h-full flex items-center justify-center my-0 md:my-12 bg-black px-4 py-20 sm:py-24">
       <main className="flex flex-col items-center justify-center max-w-6xl text-center space-y-6">
         <h2 className="text-4xl sm:text-6xl font-extrabold mb-2 leading-tight">
           Welcome to{" "}
