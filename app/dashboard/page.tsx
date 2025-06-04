@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { dataFetch } from "../lib/api";
 import { Line } from "react-chartjs-2";
 import {
@@ -64,15 +64,20 @@ const applyFilter = () => {
   }
 };
 
-const filteredData = sensorData.filter((item) => {
-  if (!startTimestamp || !endTimestamp) {
-    return true;
+const filteredData = useMemo(() => {
+  if (startTimestamp && endTimestamp) {
+    const start = new Date(startTimestamp).getTime();
+    const end = new Date(endTimestamp).getTime();
+    return sensorData.filter((item) => {
+      const time = new Date(item.timestamp).getTime();
+      return time >= start && time <= end;
+    });
   }
-  const time = new Date(item.timestamp).getTime();
-  const start = new Date(startTimestamp).getTime();
-  const end = new Date(endTimestamp).getTime();
-  return time >= start && time <= end;
-});
+
+  return sensorData.slice(-30);
+}, [sensorData, startTimestamp, endTimestamp]);
+
+
 
 
 
