@@ -25,13 +25,14 @@ const Signup: React.FC = () => {
   const [redirecting, setRedirecting] = useState(false);
 
   const router = useRouter();
-  const isAuthenticated = useIsAuthenticated();
+  const isAuthenticated = useIsAuthenticated() ?? false;
 
-    useEffect(() => {
-      if (isAuthenticated) {
-        router.replace('/dashboard');
-      }
-    }, [isAuthenticated, router]);
+  useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (token || isAuthenticated) {
+    router.replace('/dashboard');
+  }
+}, [isAuthenticated]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -128,15 +129,6 @@ if (redirecting) {
     </div>
   );
 }
-
-useEffect(() => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    router.replace('/dashboard');
-  }
-}, []);
-
-
 
   return (
 
